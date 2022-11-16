@@ -10,10 +10,10 @@
 class Solution {
 public:
     int guessNumber(int n) {
-        long long int li=1,hi=n,mid,temp;
+        int li=1,hi=n,mid,temp;
         while(li<=hi)
         {
-            mid=(li+hi)/2;
+            mid=(hi-li)/2+li;
             temp=guess(mid);
             if(temp==0)
                 return mid;
