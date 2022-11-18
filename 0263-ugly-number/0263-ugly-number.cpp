@@ -8,8 +8,7 @@ public:
             if(n%x[i]==0) n/=x[i];
             else i++;
         }
-        if(n>2) return false;
-        return true;
+        return n==1;
         
     }
 };
