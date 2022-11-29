@@ -2,35 +2,36 @@ class RandomizedSet {
 public:
     unordered_map<int,int>m;
     vector<int>nums;
+    int n;
     RandomizedSet() {
-        
+        n=0;
     }
-    
     bool insert(int val) {
         if(m[val]>=1) return false;
         nums.push_back(val);
-        m[val]=nums.size();
+        n++;
+        m[val]=n;
         return true;
     }
-    
     bool remove(int val) {
         if(m[val]<1) return false;
-        if(m[val]!=nums.size()){
+        if(m[val]!=n){
             nums[m[val]-1]=nums[nums.size()-1];
-            m[nums[nums.size()-1]]=m[val];
+            m[nums[n-1]]=m[val];
             m[val]=0;
+            n--;
             nums.pop_back();
         }
         else
         {
             m[val]=0;
             nums.pop_back();
+            n--;
         }
         return true;
-    }
-    
+    }  
     int getRandom() {
-        return nums[rand()%nums.size()];
+        return nums[rand()%n];
     }
 };
 
