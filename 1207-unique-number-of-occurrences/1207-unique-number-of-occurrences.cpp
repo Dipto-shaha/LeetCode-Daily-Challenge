@@ -2,9 +2,9 @@ class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
         map<int,int>m,cnt;
-        for(int i=0;i<arr.size();i++)
+        for(auto u:arr)
         {
-            m[arr[i]]++;
+            m[u]++;
         }
         for(auto u:m)
         {
