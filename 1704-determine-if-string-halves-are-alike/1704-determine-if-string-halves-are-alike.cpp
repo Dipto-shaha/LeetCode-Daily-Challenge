@@ -2,8 +2,10 @@ class Solution {
 public:
     bool vowel(char c)
     {
-        return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
-              c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' );
+        if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+              c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' )
+            return true;
+        return false;
     }
     bool halvesAreAlike(string s) {
         int i,n=s.size(),cnt=0;
