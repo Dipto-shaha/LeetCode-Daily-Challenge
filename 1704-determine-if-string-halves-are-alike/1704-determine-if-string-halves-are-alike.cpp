@@ -1,24 +1,24 @@
 class Solution {
 public:
+    bool vowel(char c)
+    {
+        if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+              c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' )
+            return true;
+        return false;
+    }
     bool halvesAreAlike(string s) {
         int i,n=s.size(),cnt=0;
-        char c;
         for(i=0;i<n/2;i++)
         {
-            c=s[i];
-            if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
-              c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' )
+            if(vowel(s[i]))
                  cnt++;
-
         }
         for(i=n/2;i<n;i++)
         {
-            c=s[i];
-            if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
-              c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' )
+            if(vowel(s[i]))
                  cnt--;
         }
-        if(cnt!=0) return false;
-        return true;
+        return cnt==0;
     }
 };
