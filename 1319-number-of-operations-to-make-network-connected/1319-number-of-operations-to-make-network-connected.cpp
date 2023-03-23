@@ -1,14 +1,14 @@
 class Solution {
 public:
     vector<vector<int>>g;
-    bool visit[100001];
+    set<int>s;
     void dfs(int u)
     {
         for(auto v:g[u])
         {
-            if(visit[v])
+            if(s.find(v)==s.end())
             {
-                visit[v]=false;
+                s.insert(v);
                 dfs(v);
             }
         }
@@ -17,7 +17,6 @@ public:
         int l=connections.size(),ans=0;
         if(l<n-1) return -1;
         g.resize(n+1);
-        memset(visit,true,sizeof(visit));
         for(auto u:connections )
         {
             g[u[0]].push_back(u[1]);
@@ -25,9 +24,9 @@ public:
         }
         for(int i=0;i<n;i++)
         {
-            if(visit[i])
+            if(s.find(i)==s.end())
             {
-                visit[i]=false;
+                s.insert(i);
                 dfs(i);
                 ans++;
             }
