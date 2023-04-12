@@ -8,27 +8,26 @@ public:
         {
             if(path[i]=='/') 
             {
-                if(cnt!="" && cnt!=".")
-                st.push(cnt);
-                cnt="";
-            }
-            else if(i>0 && path[i]=='.' && path[i-1]=='.')
-            {
-                if(i-2>=0 && path[i-2]=='/' &&  ((i+1<n && path[i+1]=='/') || i+1==n))
-                {
-                  
-                    cnt="";
+                if(cnt=="..")
+                {  
                     if(st.size()>0) st.pop();
                 }
-                else  cnt+=path[i];
+                else if(cnt!="" && cnt!=".")
+                    st.push(cnt);
+                cnt="";
             }
             else cnt+=path[i];
         }
-        if(cnt!="" && cnt!=".")
-           st.push(cnt);
+         if(cnt=="..")
+        {  
+            if(st.size()>0) st.pop();
+        }
+        else if(cnt!="" && cnt!=".")
+            st.push(cnt);
         cnt="";
         while(st.size()>0)
         {
+            //cout<<st.top()<<"\n";
             cnt="/"+st.top()+cnt;
             st.pop();
         }
