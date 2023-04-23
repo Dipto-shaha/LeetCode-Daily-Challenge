@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int dp[100000],mod=1e9+7;
+    int mod=1e9+7;
+    vector<int>dp;
     int fun(string &s,int l,int k)
     {
         if(l>=s.size()) return 1;
@@ -17,7 +18,7 @@ public:
         return ans;
     }
     int numberOfArrays(string s, int k) {
-        memset(dp,-1,sizeof(dp));
+        dp.resize(s.size(),-1);
         return fun(s,0,k);
     }
 };
