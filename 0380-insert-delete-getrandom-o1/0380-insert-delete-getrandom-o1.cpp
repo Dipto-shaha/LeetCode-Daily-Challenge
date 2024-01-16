@@ -1,37 +1,35 @@
 class RandomizedSet {
 public:
-    unordered_map<int,int>m;
-    vector<int>nums;
-    int n;
+    map<int,int>m;
+    vector<int>item;
     RandomizedSet() {
-        n=0;
+        
     }
+    
     bool insert(int val) {
-        if(m[val]>=1) return false;
-        nums.push_back(val);
-        n++;
-        m[val]=n;
-        return true;
+         if(m[val]) return false;
+         item.push_back(val);
+         m[val]=item.size();
+         return true;
     }
+    
     bool remove(int val) {
-        if(m[val]<1) return false;
-        if(m[val]!=n){
-            nums[m[val]-1]=nums[nums.size()-1];
-            m[nums[n-1]]=m[val];
-            m[val]=0;
-            n--;
-            nums.pop_back();
-        }
-        else
-        {
-            m[val]=0;
-            nums.pop_back();
-            n--;
-        }
-        return true;
-    }  
+         if(!m[val]) return false;
+         if(item.size()==1)
+         {
+             item.clear();
+             m.clear();
+             return true;
+         }
+         item[m[val]-1]=item[item.size()-1];
+         m[item[item.size()-1]]=m[val];
+         m[val]=0;
+         item.pop_back();
+         return true;
+    }
+    
     int getRandom() {
-        return nums[rand()%n];
+        return item[rand()%item.size()];
     }
 };
 
