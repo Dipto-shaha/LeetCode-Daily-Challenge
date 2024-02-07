@@ -1,44 +1,21 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        vector<int>cnt(62,0);
-        int i,mx,pos;
-        for(i=0;s[i]!='\0';i++)
+        map<char,int>m;
+        for(auto u:s)
+            m[u]++;
+        vector<pair<int,char>>v;
+        for(auto u:m)
         {
-            if(s[i]>='A' && s[i]<='Z') 
-                cnt[s[i]-'A'+26]++;
-            else if(s[i]>='0' && s[i]<='9')
-                cnt[s[i]-'0'+52]++;
-            else
-              cnt[s[i]-'a']++;
+            v.push_back({u.second,u.first});
         }
-        s="";
-        while(1)
+        sort(v.begin(),v.end());
+        string ans="";
+        for(int i=v.size()-1;i>=0;i--)
         {
-            mx=0,pos=-1;
-            for(i=0;i<=61;i++)
-            {
-                if(cnt[i]>mx)
-                {
-                    pos=i;
-                    mx=cnt[i];
-                }
-            }
-            if(pos!=-1)
-            {
-                while(cnt[pos])
-                {
-                    if(pos>51)
-                        s+=pos-52+'0';
-                    else if(pos>25)
-                        s+=pos+'A'-26;
-                    else
-                        s+=pos+'a'; 
-                    cnt[pos]--;
-                }
-            }
-            else break;
+            while(v[i].first--)
+                ans+=v[i].second;
         }
-        return s;
+        return ans;
     }
 };
