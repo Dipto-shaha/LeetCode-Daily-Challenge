@@ -1,20 +1,19 @@
 class Solution {
 public:
-    int dp[100001];
-    int fun(int n)
-    {
-        if(n==0) return 0;
-        if(dp[n]!=-1) return dp[n];
-        int ans=INT_MAX;
-        for(int i=1;i*i<=n;i++)
-        {
-            ans=min(ans,1+fun(n-i*i));
-        }
-        dp[n]=ans;
-        return ans;
-    }
     int numSquares(int n) {
-        memset(dp,-1,sizeof(dp));
-        return fun(n);
+        if(n==0) return 0;
+        vector<int>square(n+1,INT_MAX);
+        int i,j,ans;
+        square[0]=0;
+        for(i=1;i<=n;i++)
+        {
+            ans=INT_MAX;
+            for(j=1;j*j<=i;j++)
+            {
+                ans=min(ans,1+square[i-j*j]);
+            }
+            square[i]=ans;
+        }
+        return square[n];
     }
 };
