@@ -27,7 +27,7 @@ public:
 
         while (temp->next) {
             odd = temp->next; // odd points to the next node
-            last=lastNode(head);
+            last=lastNode(odd);
             temp->next = last; // breaking the last node from the first half
             if (odd == last) break; // if odd is the last node, break
             temp->next->next = odd; // pointing the next of the last node to odd (which is the next node)
