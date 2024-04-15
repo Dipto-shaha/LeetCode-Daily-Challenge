@@ -11,21 +11,20 @@
  */
 class Solution {
 public:
-    int ans;
-    void fun(TreeNode* root,int num)
-    {
-        if(!root->left && !root->right ) {
-            ans+=num*10+root->val;
+    int sum = 0;
+    void pathSum(TreeNode* root , int val){
+        if(!root->left && !root->right){
+            sum+=val*10+root->val;
             return;
         }
         if(root->left)
-        fun(root->left,num*10+root->val);
+            pathSum(root->left,val*10+root->val);
         if(root->right)
-        fun(root->right,num*10+root->val);
+            pathSum(root->right,val*10+root->val);
+        
     }
     int sumNumbers(TreeNode* root) {
-        ans=0;
-        fun(root,0);
-        return ans;
+        pathSum(root,0);
+        return sum;
     }
 };
