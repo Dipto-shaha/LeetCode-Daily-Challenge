@@ -3,7 +3,8 @@ class Solution(object):
         dir = 0
         x , y = 0 , 0
         pair_set = {tuple(pair) for pair in obstacles}
-        ans = 0    
+        ans = 0   
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
         for c in commands:
             if c == -1:
                 dir = (dir+1)%4
@@ -11,28 +12,14 @@ class Solution(object):
                 dir = (dir-1+4)%4
             else:
                 while c:
-                    if dir == 0:
-                        y+=1
-                        if (x,y) in pair_set:
-                            y-=1
-                            break
-                    elif dir == 1:
-                        x+=1
-                        if (x,y) in pair_set:
-                            x-=1
-                            break
-                    elif dir == 2:
-                        y-=1
-                        if (x,y) in pair_set:
-                            y+=1
-                            break
-                    else:
-                        x-=1
-                        if (x,y) in pair_set:
-                            x+=1
-                            break
-                    c-=1
-            
+                    dx, dy = directions[dir]
+                    x += dx
+                    y += dy
+                    if (x,y) in pair_set:
+                        x -= dx
+                        y -= dy
+                        break
+                    c -= 1
             #print(dir,x,y)
             ans = max(x*x+y*y,ans)
                         
